@@ -1,0 +1,31 @@
+<p-menubar [model]="items">
+    <ng-template pTemplate="start">
+         <!-- <i class="pi pi-prime" style="font-size: 2.5rem;"></i> -->
+         <a href="/">
+            <img src="../../assets/images/fotsi_logo.png" alt="" style="width: 50px;">
+         </a>
+         <p-button
+        label="Home"
+        icon="pi pi-home"
+        styleClass="p-button-secondary mx-5"
+        badgeClass="p-badge-danger"
+        [routerLink]="['/']"
+      ></p-button>
+    </ng-template>
+    <ng-template pTemplate="end" >
+        <span class="p-input-icon-left lg:block md:block    sm:hidden hidden">
+            <i class="pi pi-search"></i>
+            <input type="text" class=""  pInputText placeholder="Buscar" />
+        </span>
+
+    </ng-template>
+</p-menubar>
+
+
+<!-- <p-menubar [model]="items">
+    <ng-template pTemplate="start">
+        <i class="pi pi-prime" style="font-size: 2.5rem; color: red;"></i>
+        <input type="text" pInputText placeholder="Search">
+   </ng-template>
+    <button pButton label="Logout" icon="pi pi-power-off"></button>
+</p-menubar> -->

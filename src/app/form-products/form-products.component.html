@@ -1,0 +1,101 @@
+<!-- flex flex-column align-items-center w-100 -->
+<p-card styleClass="m-5 " header="Productos">
+  <p>Ingresa la informacion del producto</p>
+
+  <div class="">
+    <label for="">Codigo</label>
+    <div class="p-inputgroup my-2">
+      <span class="p-inputgroup-addon"><i class="pi pi-user"></i></span>
+      <!-- <input required [(ngModel)]="orderDto.name" type="text" pInputText placeholder="Nombre">          -->
+      <input
+        [(ngModel)]="product.codigo"
+        type="text"
+        pInputText
+        placeholder="Codigo"
+      />
+    </div>
+    <label for="">Nombre</label>
+
+    <div class="p-inputgroup my-2">
+      <span class="p-inputgroup-addon"><i class="pi pi-user"></i></span>
+      <input
+        [(ngModel)]="product.nombre"
+        type="text"
+        pInputText
+        placeholder="Nombre"
+      />
+    </div>
+    <label for="">Precio</label>
+    <div class="p-inputgroup my-2">
+      <span class="p-inputgroup-addon"><i class="pi pi-user"></i></span>
+      <input
+        [(ngModel)]="product.precio"
+        type="text"
+        pInputText
+        placeholder="Precio"
+      />
+    </div>
+
+    <div class="p-inputgroup my-2">
+      
+    </div>
+
+    <p-dropdown
+    class="w-100"
+        [options]="categories"
+        [(ngModel)]="product.categoriaObject"
+        optionLabel="nombreCategoria"
+        [filter]="true"
+        filterBy="nombreCategoria"
+        [showClear]="true"
+        placeholder="Selecciona una Catagoria"
+      >
+        <ng-template pTemplate="selectedItem">
+          <div class="category-item category-item-value" *ngIf="product.categoriaObject">
+            <div>{{ product.categoriaObject.nombreCategoria }}</div>
+          </div>
+        </ng-template>
+        <ng-template let-category pTemplate="item">
+          <div class="category-item">
+            <div>{{ category.nombreCategoria }}</div>
+          </div>
+        </ng-template>
+      </p-dropdown>
+
+    <!-- <label for="">Fecha Creado</label>
+    <div class="p-inputgroup my-2">
+      <span class="p-inputgroup-addon"><i class="pi pi-user"></i></span>
+      <p-calendar [(ngModel)]="product.fechaCreado"></p-calendar>
+
+    </div> -->
+  </div>
+
+  <p-messages
+    [(value)]="msgsValidationInputs"
+    [enableService]="false"
+  ></p-messages>
+  <ng-template class="" pTemplate="footer">
+    <button
+      pButton
+      type="button"
+      label="Update"
+      (click)="update()"
+      *ngIf="updating; else elseBlockButton"
+    ></button>
+
+    <ng-template #elseBlockButton>
+      <button  pButton type="button" label="Create" (click)="save()"></button>
+    </ng-template>
+
+    <button
+      pButton
+      type="button"
+      label="Cancel"
+      class="mx-5 btn-primary"
+      [routerLink]="['/products']"
+    ></button>
+  </ng-template>
+</p-card>
+
+<p-toast position="top-right"></p-toast>
+

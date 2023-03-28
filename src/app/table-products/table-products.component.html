@@ -1,0 +1,87 @@
+<!-- <button pButton type="button" label="Create"
+[routerLink]="['/models/form']"></button> -->
+
+<div class="my-5 w-full">
+  <p-toolbar class="w-full">
+    <div class="p-toolbar-group-left">
+      <p-button
+        (click)="show()"
+        label="Nuevo Producto"
+        icon="pi pi-plus"
+      ></p-button>
+      <!-- <button class="my-5"  pButton type="button" label="Create" (click)="show();"></button> -->
+
+      <div class="p-inputgroup m-2 w-full">
+        <input
+          [(ngModel)]="codigo"
+          type="text"
+          pInputText
+          placeholder="Codigo de Barras"
+          class="mx-2"
+          (keyup)="onKeyUpEvent('codigo')"
+        />
+
+        <input
+          [(ngModel)]="nombre"
+          type="text"
+          pInputText
+          placeholder="Nombre"
+          class="mx-2"
+          (keyup)="onKeyUpEvent('nombre')"
+        />
+      </div>
+    </div>
+
+    <div class="p-toolbar-group-right"></div>
+  </p-toolbar>
+</div>
+
+<p-table
+  [value]="products"
+  styleClass="p-datatable-striped"
+  responsiveLayout="scroll"
+  [paginator]="true"
+  [rows]="10"
+>
+  <ng-template pTemplate="header">
+    <tr>
+      <th>Codigo</th>
+      <th>Nombre</th>
+      <th>Precio</th>
+      <th>Fecha Creado</th>
+      <th>Categoria</th>
+      <th>Edit</th>
+      <th>Delete</th>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-product>
+    <tr>
+      <td>{{ product.codigo }}</td>
+      <td>{{ product.nombre }}</td>
+      <td>{{ product.precio }}</td>
+      <td>{{ product.fechaCreado }}</td>
+      <td>{{ product.categoriaObject.nombreCategoria   }}</td>
+      <td>
+        <button
+          pButton
+          type="button"
+          icon="pi pi-pencil"
+          iconPos="left"
+          [routerLink]="['/products/form', product.id]"
+        ></button>
+      </td>
+      <td>
+        <button
+          pButton
+          type="button"
+          icon="pi pi-trash"
+          iconPos="left"
+          class="p-button-danger"
+          (click)="delete(product.id)"
+        ></button>
+      </td>
+    </tr>
+  </ng-template>
+</p-table>
+
+<p-toast></p-toast>
